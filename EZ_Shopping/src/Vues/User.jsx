@@ -6,8 +6,8 @@ import Navigation from '../Components/Navigation'
 function User() {
   return (
     <div>
-      <h1>User</h1>
       <Navigation />
+      <h1>User</h1>
       <Form />
     </div>
   )
