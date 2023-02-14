@@ -1,7 +1,11 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchproducts } from "../store/productsSlice";
 
 function Items() {
+  const dispatch = useDispatch();
+  
   return (
     <div>
       <Card style={{ width: '18rem' }}>
@@ -12,7 +16,7 @@ function Items() {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </Card.Text>
-          <Button variant="warning">Add to basket</Button>
+          <Button variant="warning" onClick={() => dispatch(fetchproducts())}>Add to basket</Button>
         </Card.Body>
       </Card>
     </div>

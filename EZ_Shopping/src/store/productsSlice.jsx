@@ -12,8 +12,6 @@ export const productsSlice = createSlice({
         if (state.loading === "idle"){
             state.loading = "pending";
         }
-        
-        console.log('loading = pending');
     },
     productsReceived(state,action) {
         if(state.loading ==="pending"){
@@ -30,7 +28,8 @@ export const { productsLoading, productsReceived } = productsSlice.actions;
 
 export const fetchproducts = () => async (dispatch) => {
   dispatch(productsLoading());
-  let rep = await fetch('https://fakestoreapi.com/products', { method: 'GET' });
+  let rep = await fetch('https://fakestoreapi.com/products');
   let response = await rep.json();
+  console.log(response);
   dispatch(productsReceived(response.data));
 };
