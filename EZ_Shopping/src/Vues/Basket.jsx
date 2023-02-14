@@ -1,15 +1,23 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import Click from '../Components/Click'
 import Navigation from '../Components/Navigation'
+import Items from '../Components/Items'
+import basket from './Styles/basket.css'
+
 
 function Basket() {
   return (
     <div>
       <Navigation />
-      <h1>Basket</h1>
-      <NavLink to="/">
-        Go to Home page
-      </NavLink>
+      <div className='basket-title'>
+        <h1>Hi USER !</h1>
+        <p>Ther are 0 items in your basket</p>
+        <Click />
+      </div>
+      <div className='article-basket-container'>
+        <Items/>
+      </div>
+
     </div>
 
   )

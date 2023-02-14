@@ -1,0 +1,14 @@
+.basket-title {
+  height: 200px;
+  background: white;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+}
+
+.article-basket-container {
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

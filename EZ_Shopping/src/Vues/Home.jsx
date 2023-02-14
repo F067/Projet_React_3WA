@@ -1,15 +1,15 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import Items from '../Components/Items'
 import Navigation from "../Components/Navigation"
+import home from './Styles/home.css'
 
 function Home() {
     return (
-        <div>
-            <Navigation/>
-            <h1>Home</h1>
-            <NavLink to="/Details">
-                Go to Details page
-            </NavLink>
+        <div >
+            <Navigation />
+            <div className='home-content'>
+                <Items />
+            </div>
         </div>
     )
 }
