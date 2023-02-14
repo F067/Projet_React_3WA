@@ -1,14 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import Form from '../Components/Form'
+import Formular from '../Components/Formular'
 import Navigation from '../Components/Navigation'
+import user from './Styles/user.css'
 
 function User() {
   return (
-    <div>
+    <div >
       <Navigation />
       <h1>User</h1>
-      <Form />
+      <div className='user-container'>
+        <Formular />
+      </div>
     </div>
   )
 }
