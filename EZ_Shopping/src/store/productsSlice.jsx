@@ -17,7 +17,6 @@ export const productsSlice = createSlice({
         if(state.loading ==="pending"){
             state.loading ="idle";
             state.products = action.payload;
-            console.log(state.products);
         }
 
     }
@@ -31,5 +30,5 @@ export const fetchproducts = () => async (dispatch) => {
   let rep = await fetch('https://fakestoreapi.com/products');
   let response = await rep.json();
   console.log(response);
-  dispatch(productsReceived(response.data));
+  dispatch(productsReceived(response));
 };

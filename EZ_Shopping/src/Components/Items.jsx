@@ -1,24 +1,46 @@
-import React from 'react'
-import { Card, Button } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react'
+import { Card, Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchproducts } from "../store/productsSlice";
+// import { fonctiondemort } from "../store/usersSlice";
 
 function Items() {
   const dispatch = useDispatch();
-  
+  useEffect(()=>{
+    dispatch(fetchproducts())
+  },[]);
+  let user = (localStorage.getItem('user') == null) ? [{firstName:"firstName"}] : localStorage.getItem('user')
+  console.log(user);
+  const [quantity, setQuantity] = useState(0);
+  const object = useSelector((state) => state.products.products);
+  function addToBasket(){
+    
+    console.log(product);
+  }
+
+  function handleChange(event){
+    setQuantity(event.target.value);
+  }
+
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="warning" onClick={() => dispatch(fetchproducts())}>Add to basket</Button>
-        </Card.Body>
-      </Card>
+      {object.map((product) =>{
+        return (
+          <Card style={{ width: '18rem' }} key={product.id}>
+            <Card.Img variant="top" src={product.image} />
+            <Card.Body>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text className='category'>{product.category}</Card.Text>  
+              <Card.Text>
+                {product.description}
+              </Card.Text>
+              <Card.Text className='price'>${product.price}</Card.Text>
+              <div><p>Quantity :</p><Form.Control type="number" onChange={handleChange} value={quantity} /></div>
+              <Button variant="warning" onClick={addToBasket}>Add to basket</Button>
+            </Card.Body>
+          </Card>
+        )
+      })}  
     </div>
   )
 }
