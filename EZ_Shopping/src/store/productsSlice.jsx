@@ -17,7 +17,6 @@ export const productsSlice = createSlice({
         if(state.loading ==="pending"){
             state.loading ="idle";
             state.products = action.payload;
-            console.log(state.products);
         }
 
     }
