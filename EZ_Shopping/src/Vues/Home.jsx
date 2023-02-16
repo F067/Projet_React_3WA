@@ -1,20 +1,17 @@
 import React from 'react'
 import Items from '../Components/Items'
 import Navigation from "../Components/Navigation"
-import { Row, Col, Container } from 'react-bootstrap'
 
 function Home() {
     return (
-        <Container fluid>
-            <Row>
-                <Col>
+        <div >
+            <div>
                     <Navigation />
-                </Col>
-            </Row>
-            <Row>
+            </div>
+            <div>
                 <Items />
-            </Row>
-        </Container>
+            </div>
+        </div>
     )
 }
 

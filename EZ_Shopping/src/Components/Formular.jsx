@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form } from 'react-bootstrap';
 import { updateProfile } from '../store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Container } from 'react-bootstrap'
 
 function Formular() {
 
@@ -37,40 +35,25 @@ function Formular() {
     }
 
     return (
-        <Container fluid>
-            <Row>
-                <Col>
-                    <h1>Hi {profile == null ? "User" : profile.firstName}</h1>
-                    <h2>Customize your profile here</h2>
-                </Col>
-
-            </Row>
-            <Row>
-                <Col>
-                    <Form onSubmit={handleProfile}>
-                        <Form.Group className="mb-3">
-                            <Form.Label></Form.Label>
-                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Firstname ..." />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Your Lastname</Form.Label>
-                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Lastname ..." />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3">
-                            <Form.Label>Your Email</Form.Label>
-                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email ..." />
-                        </Form.Group>
-
-                        <Button variant="warning" type="submit">
-                            Save
-                        </Button>
-                    </Form>
-                </Col>
-            </Row>
-
-        </Container>
+        <div>
+            <div>
+                <h1>Hi {profile == null ? "User" : profile.firstName}</h1>
+                <h2>Customize your profile here</h2>
+            </div>
+            <div>
+                <div>
+                    <form onSubmit={handleProfile} action="">
+                        <label>Your Firstname</label>
+                        <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Firstname ..." />
+                        <label>Your Lastname</label>
+                        <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Firstname ..." />
+                        <label>Your Email</label>
+                        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Firstname ..." />
+                        <button type='submit'>Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 

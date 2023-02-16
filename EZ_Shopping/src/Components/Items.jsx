@@ -6,35 +6,27 @@ import { addOrder } from "../store/basketSlice";
 import { Row, Col, Container } from 'react-bootstrap'
 
 function Items() {
+
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.products);
+  const basket = useSelector((state) => state.basket.orders);
+  const [quantity, setQuantity] = useState(0);
+
   useEffect(() => {
     dispatch(fetchproducts())
   },[]);
+
   let user = (localStorage.getItem('user') == null) ? [{firstName:"firstName"}] : localStorage.getItem('user')
-  console.log(user);
-  const [quantity, setQuantity] = useState(0);
-  const [order, setOrder] = useState();
-  const products = useSelector((state) => state.products.products);
-  const basket = useSelector((state) => state.basket.orders);
-  console.log('le panier : ');
-  console.log(basket);
+
 
   function addToBasket(event){
-
     let id = event.target.id;
-    
     dispatch(addOrder({product: id, quantity:3}))
   }
 
   function handleChange(event){
-    let pos = products.findIndex(i => i.id == products.id);
-    
     setQuantity(event.target.value);
-    
-    for(let i =0; i < products.length; i++){
-    
-      console.log(products[i]);
-    }
+    console.log("coucou")
   }
   
   return (

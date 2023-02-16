@@ -6,18 +6,14 @@ import { Row, Col, Container } from 'react-bootstrap'
 
 function User() {
   return (
-    <Container >
-      <Row>
-        <Col>
-          <Navigation />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Formular />
-        </Col>
-      </Row>
-    </Container>
+    <div >
+      <div>
+        <Navigation />
+      </div>
+      <div>
+        <Formular />
+      </div>
+    </div>
   )
 }
 
