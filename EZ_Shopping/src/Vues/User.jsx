@@ -1,17 +1,23 @@
 import React from 'react'
-import user from './Styles/user.css'
 import Formular from '../Components/Formular'
 import Navigation from '../Components/Navigation'
+import { Row, Col, Container } from 'react-bootstrap'
 
 
 function User() {
   return (
-    <div >
-      <Navigation />
-      <div className='user-container'>
-        <Formular />
-      </div>
-    </div>
+    <Container >
+      <Row>
+        <Col>
+          <Navigation />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Formular />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

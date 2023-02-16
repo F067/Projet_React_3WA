@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap';
-import formular from './Styles/formular.css'
 import { updateProfile } from '../store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Row, Col, Container } from 'react-bootstrap'
 
 function Formular() {
 
@@ -37,31 +37,40 @@ function Formular() {
     }
 
     return (
-        <div className='form-content'>
-            <h1>Hi {profile == null ? "User" : profile.firstName}</h1>
-            <h2>Customize your profile here</h2>
+        <Container fluid>
+            <Row>
+                <Col>
+                    <h1>Hi {profile == null ? "User" : profile.firstName}</h1>
+                    <h2>Customize your profile here</h2>
+                </Col>
 
-            <Form onSubmit={handleProfile}>
-                <Form.Group className="mb-3">
-                    <Form.Label></Form.Label>
-                    <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Firstname ..." />
-                </Form.Group>
+            </Row>
+            <Row>
+                <Col>
+                    <Form onSubmit={handleProfile}>
+                        <Form.Group className="mb-3">
+                            <Form.Label></Form.Label>
+                            <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Firstname ..." />
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Your Lastname</Form.Label>
-                    <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Lastname ..." />
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Your Lastname</Form.Label>
+                            <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Lastname ..." />
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Your Email</Form.Label>
-                    <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email ..." />
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Your Email</Form.Label>
+                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email ..." />
+                        </Form.Group>
 
-                <Button variant="warning" type="submit">
-                    Save
-                </Button>
-            </Form>
-        </div>
+                        <Button variant="warning" type="submit">
+                            Save
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
+
+        </Container>
     )
 }
 
