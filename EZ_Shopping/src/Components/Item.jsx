@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Col } from 'react-bootstrap'
 import { useDispatch } from "react-redux";
 import { Card, Button, Form } from 'react-bootstrap';
 import { addOrder } from "../store/basketSlice";
@@ -8,9 +7,9 @@ import { addOrder } from "../store/basketSlice";
 function Item(props) {
 
     const dispatch = useDispatch();
-    const [number, setNumber] = useState(0);
-
-    function addToBasket(event) {
+    const [number, setNumber] = useState(1);
+    
+    function addToBasket(event){
 
         let id = event.target.id;
 
@@ -32,7 +31,7 @@ function Item(props) {
                             {props.product.description}
                         </Card.Text>
                         <Card.Text className='price'>${props.product.price}</Card.Text>
-                        <div><p>Quantity :</p><Form.Control type="number" onChange={handleChange} value={number} /></div>
+                        <div><p>Quantity :</p><Form.Control type="number" onChange={handleChange} min={1} value={number} /></div>
                         <Button variant="warning" id={props.product.id} onClick={addToBasket}>Add to basket</Button>
                     </Card.Body>
                 </Card>

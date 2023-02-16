@@ -7,8 +7,18 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 function Navigation() {
     const [isDark, setIsDark] = useState(false)
+
     const profile = useSelector((state) => state.user.profile)
+    const basket = useSelector((state) => state.basket.orders);
     const navigate = useNavigate();
+    const global_qty = basket.reduce(function(accumulateur, valeurCourante){
+        return accumulateur + valeurCourante.quantity;
+    }, 0);
+    const handleMode = () => {
+        setIsDark(true)
+    }
+
+
 
     return (
         <ThemeProvider theme={isDark ? themeDark : themeLight}>
@@ -19,8 +29,8 @@ function Navigation() {
                 </div>
                 <div className='nav-right'>
                     <span onClick={() => navigate("/User")}>👱🏼‍♂️ {profile == null ? "User" : profile.firstName}</span>
-                    <span onClick={() => navigate("/Basket")}>🛒 Basket</span>
-                    <span onClick={() => setIsDark((prevMode) => !prevMode)}> {!isDark ? "⚫️ Dark" : "⚪️ Light"}  </span>
+                    <span onClick={() => navigate("/Basket")}>🛒 {global_qty} Items</span>
+                    <span onClick={()=> setIsDark((prevMode)=> !prevMode)}> {!isDark ? "⚫️ Dark" : "⚪️ Light"}  </span>
                 </div>
             </NavContainer>
         </ThemeProvider>
@@ -38,8 +48,9 @@ align-items: center;
 height: 100px;
 background: #ffca2c;
 color: black;
-color: ${props => props.theme.navTheme};
-background: ${props => props.theme.navTheme}
+
+color: ${props => props.theme.navColor};
+background: ${props => props.theme.navBackground}
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -47,11 +58,6 @@ body{
     color: ${props => props.theme.primaryColor};
     background: ${props => props.theme.primaryBackground}
 }
-button{
-    color: ${props => props.theme.primaryColor};
-    background: ${props => props.theme.primaryBackground}
-}
-
 `
 
 const themeLight = {
@@ -63,7 +69,7 @@ const themeLight = {
 
 const themeDark = {
     primaryColor: "white",
-    primaryBackground: "#282A3A",
-    navBackground: "grey",
+    primaryBackground: "#144272",
+    navBackground: "#0A2647",
     navColor: "black"
 }
