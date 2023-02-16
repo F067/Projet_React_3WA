@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { updateProfile } from '../store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from "styled-components"
 
 function Formular() {
 
@@ -40,21 +41,45 @@ function Formular() {
                 <h1>Hi {profile == null ? "User" : profile.firstName}</h1>
                 <h2>Customize your profile here</h2>
             </div>
-            <div>
+            <FormContent>
                 <div>
-                    <form onSubmit={handleProfile} action="">
+                    <UserForm onSubmit={handleProfile} action="">
                         <label>Your Firstname</label>
                         <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Firstname ..." />
                         <label>Your Lastname</label>
                         <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Firstname ..." />
                         <label>Your Email</label>
                         <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Firstname ..." />
-                        <button type='submit'>Save</button>
-                    </form>
+                        <FormButton type='submit'>Save</FormButton>
+                    </UserForm>
                 </div>
-            </div>
+            </FormContent>
         </div>
     )
 }
 
 export default Formular
+
+const FormContent = styled.div`
+display: flex;
+justify-content:center;
+`
+
+const UserForm = styled.form`
+display : flex;
+flex-direction : column;
+width : 300px;
+`
+
+const FormButton = styled.button`
+background-color: #FFCA2C;
+font-size: 1em;
+margin: 1em;
+padding: 0.25em 1em;
+border-radius: 3px;
+outline: none;
+-webkit-user-select: none;
+text-decoration: none;
+cursor: pointer;
+border-style: none;
+`

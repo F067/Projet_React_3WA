@@ -2,6 +2,17 @@ import React from 'react'
 import styled from "styled-components"
 
 
+function Click() {
+  return (
+    <div>
+      <StyledButton>Clear basket</StyledButton>
+    </div>
+  )
+}
+
+export default Click
+
+
 const StyledButton = styled.button`
   background-color: #FFCA2C;
   font-size: 1em;
@@ -14,13 +25,3 @@ const StyledButton = styled.button`
   cursor: pointer;
   border-style: none;
 `
-
-function Click() {
-  return (
-    <div>
-      <StyledButton>Clear basket</StyledButton>
-    </div>
-  )
-}
-
-export default Click

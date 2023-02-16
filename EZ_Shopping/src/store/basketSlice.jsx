@@ -11,7 +11,8 @@ export const basketSlice = createSlice({
   reducers: {
     addOrder(state, action) {
       let order = action.payload;
-
+      console.log(`dans basketSlice payload.product : ${order.product}`)
+      console.log(`dans basketSlice payload.quantity : ${order.quantity}`)
       const products_ref = state.orders.map(e => e.product);
 
       if(products_ref.includes(order.product)){
