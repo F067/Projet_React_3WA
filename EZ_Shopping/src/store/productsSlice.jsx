@@ -29,6 +29,6 @@ export const fetchproducts = () => async (dispatch) => {
   dispatch(productsLoading());
   let rep = await fetch('https://fakestoreapi.com/products');
   let response = await rep.json();
-  console.log(response);
+  // console.log(response);
   dispatch(productsReceived(response));
 };
