@@ -1,16 +1,20 @@
 import React from 'react'
 import Items from '../Components/Items'
 import Navigation from "../Components/Navigation"
-import home from './Styles/home.css'
+import { Row, Col, Container } from 'react-bootstrap'
 
 function Home() {
     return (
-        <div >
-            <Navigation />
-            <div className='home-content'>
+        <Container fluid>
+            <Row>
+                <Col>
+                    <Navigation />
+                </Col>
+            </Row>
+            <Row>
                 <Items />
-            </div>
-        </div>
+            </Row>
+        </Container>
     )
 }
 
