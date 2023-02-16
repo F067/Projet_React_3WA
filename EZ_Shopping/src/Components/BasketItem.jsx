@@ -3,18 +3,15 @@ import { Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Button, Form } from 'react-bootstrap';
 import { removeOrder } from "../store/basketSlice";
-import Click from './Click';
 
 function BasketItem(props) {
 
     const dispatch = useDispatch();
     const basket = useSelector((state) => state.basket.orders);
     const qty = basket.find(e => e.product == props.product.id).quantity;
-    console.log (qty)
     function removeItem(event){
         let id = event.target.id;
         dispatch(removeOrder({product: id}));
-        console.log("on remove");
     }
 
     return (
