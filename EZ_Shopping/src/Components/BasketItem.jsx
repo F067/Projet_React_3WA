@@ -1,24 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Col } from 'react-bootstrap'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card, Button, Form } from 'react-bootstrap';
-import { addOrder } from "../store/basketSlice";
+import { removeOrder } from "../store/basketSlice";
+import Click from './Click';
 
-function Item(props) {
+function BasketItem(props) {
 
     const dispatch = useDispatch();
-    const [number, setNumber] = useState(1);
-    
-    function addToBasket(event){
-
+    const basket = useSelector((state) => state.basket.orders);
+    const qty = basket.find(e => e.product == props.product.id).quantity;
+    console.log (qty)
+    function removeItem(event){
         let id = event.target.id;
-
-        dispatch(addOrder({product: id, quantity: parseInt(number)}))
-    }
-
-    function handleChange(event){
-        
-        setNumber(event.target.value);
+        dispatch(removeOrder({product: id}));
+        console.log("on remove");
     }
 
     return (
@@ -32,12 +28,12 @@ function Item(props) {
                     {props.product.description}
                 </Card.Text>
                 <Card.Text className='price'>${props.product.price}</Card.Text>
-                <div><p>Quantity :</p><Form.Control type="number" onChange={handleChange} value={number} /></div>
-                <Button variant="warning" id={props.product.id} onClick={addToBasket}>Add to basket</Button>
+                <p>Quantity : {qty}</p>
+                <Button variant="warning" id={props.product.id} onClick={removeItem}>Remove</Button>
                 </Card.Body>
             </Card>
         </Col>
     )
 }
 
-export default Item
+export default BasketItem

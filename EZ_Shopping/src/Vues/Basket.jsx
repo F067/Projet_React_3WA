@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Click from '../Components/Click';
 import Navigation from '../Components/Navigation';
-import Items from '../Components/Items';
+import BasketList from '../Components/BasketList';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Container } from 'react-bootstrap';
 import { fetchproducts } from "../store/productsSlice";
@@ -14,6 +14,9 @@ function Basket() {
   const basket_products_ref = basket.map(e => parseInt(e.product));
   const basket_list = products.filter(product => basket_products_ref.includes(product.id))
   
+  const global_qty = basket.reduce(function(accumulateur, valeurCourante){
+    return accumulateur + valeurCourante.quantity;
+  }, 0);
   const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,13 +34,12 @@ function Basket() {
       <Row>
         <Col>
           <h1>Hi {profile == null ? "User" : profile.firstName} !</h1>
-          <p>There are 0 items in your basket</p>
-          <Click />
+          <p>There are {global_qty} items in your basket</p>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Items list={basket_list}/>
+          <BasketList list={basket_list}/>
         </Col>
       </Row>
     </Container>

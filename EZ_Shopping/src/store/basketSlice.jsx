@@ -3,16 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const basketSlice = createSlice({
   name: "basket",
   initialState: {
-    orders: [
-      {product: '1',
-      quantity: 2}
-    ],
+    orders: [],
   },
   reducers: {
     addOrder(state, action) {
       let order = action.payload;
-      console.log(`dans basketSlice payload.product : ${order.product}`)
-      console.log(`dans basketSlice payload.quantity : ${order.quantity}`)
       const products_ref = state.orders.map(e => e.product);
 
       if(products_ref.includes(order.product)){
@@ -29,7 +24,16 @@ export const basketSlice = createSlice({
       }
       
     },
+    removeOrder(state, action){
+      let order = action.payload;
+      const products_ref = state.orders.map(e => e.product);
+      
+      if(products_ref.includes(order.product)){
+        state.orders = state.orders.filter(e => e.product !== order.product);
+      }
+
+    }
   },
 });
 
-export const { addOrder } = basketSlice.actions;
+export const { addOrder, removeOrder } = basketSlice.actions;
