@@ -28,11 +28,11 @@ function Basket() {
       <div>
         <Navigation />
       </div>
-      <div>
+      <StyledbasketTop>
         <h1>Hi {profile == null ? "User" : profile.firstName} !</h1>
-        <p>There are {global_qty} items in your basket</p>
+        <h2>There are {global_qty} items in your basket</h2>
         <StyledButton onClick={() => dispatch(removeBasket())}>Clear basket</StyledButton>
-      </div>
+      </StyledbasketTop>
       <div>
         <BasketList list={basket_list} />
       </div>
@@ -54,4 +54,11 @@ const StyledButton = styled.button`
   text-decoration: none;
   cursor: pointer;
   border-style: none;
+`
+
+const StyledbasketTop = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
 `
