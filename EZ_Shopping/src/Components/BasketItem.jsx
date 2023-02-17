@@ -16,18 +16,20 @@ function BasketItem(props) {
     }
 
     return (
-
         <CardBasket key={props.product.id}>
-            <img src={props.product.image}/>
-            <div>
+            <img src={props.product.image} />
+            <div className='details'>
                 <h2>{props.product.title}</h2>
-                <span>{props.product.category}</span>
+                <span className='category'>{props.product.category}</span>
                 <p>
                     {props.product.description}
                 </p>
-                <span>${props.product.price}</span>
-                <span>Quantity : {qty}</span>
-                <button variant="warning" id={props.product.id} onClick={removeItem}>Remove</button>
+                <div className='price-quantity'>
+                    <h2>${props.product.price}</h2>
+                    <span>Quantity : {qty}</span>
+                    <button variant="warning" id={props.product.id} onClick={removeItem}>Remove</button>
+                </div>
+
             </div>
         </CardBasket>
     )
@@ -37,23 +39,39 @@ export default BasketItem
 
 
 const CardBasket = styled.div`
-
-margin: 30px
+border-top: solid grey;
+padding-top: 2rem;
+margin-top: 2rem;
+height: 400px;
+width: 50%;
 display: flex;
-justify-content: center;
-height: 700px;
-width: 100px;
-box-shadow: 00 20px 8px #d0d0d0
-border: medium solid black;
+justify-content: space-between;
+align-items: center;
+overflow: hidden;
+
 
 img{
-    width: 300px
+    height: 100%;
+}
+
+.details{
+    padding: 2rem;
+}
+span.category{
+
+    background-color: #c0c0c0;
+    color: #8b8b8b
+    padding: 0 1rem;
+}
+
+.price-quantity{
+    display:flex;
+    flex-direction: column;
 }
 
 button{
     background-color: #FFCA2C;
     font-size: 1em;
-    margin: 1em;
     padding: 0.25em 1em;
     border-radius: 3px;
     outline: none;
@@ -61,6 +79,7 @@ button{
     text-decoration: none;
     cursor: pointer;
     border-style: none;
-
+    width: 6rem;
+    margin-top : 1rem;
 }
 `
