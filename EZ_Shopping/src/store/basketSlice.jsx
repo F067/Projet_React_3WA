@@ -35,8 +35,11 @@ export const basketSlice = createSlice({
     },
     removeBasket(state){
       state.orders = []
-    }
+    },
+    addQuantity(state, action){
+      state.orders = action.payload
+  },
   },
 });
 
-export const { addOrder, removeOrder, removeBasket } = basketSlice.actions;
+export const { addOrder, removeOrder, removeBasket, addQuantity } = basketSlice.actions;

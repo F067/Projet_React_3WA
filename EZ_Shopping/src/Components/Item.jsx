@@ -17,7 +17,6 @@ function Item(props) {
     }
 
     function handleChange(event) {
-
         setNumber(event.target.value);
     }
 
