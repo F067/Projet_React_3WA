@@ -32,8 +32,11 @@ export const basketSlice = createSlice({
         state.orders = state.orders.filter(e => e.product !== order.product);
       }
 
+    },
+    removeBasket(state){
+      state.orders = []
     }
   },
 });
 
-export const { addOrder, removeOrder } = basketSlice.actions;
+export const { addOrder, removeOrder, removeBasket } = basketSlice.actions;

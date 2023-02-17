@@ -1,50 +1,57 @@
 import React, { useEffect } from 'react';
-import Click from '../Components/Click';
 import Navigation from '../Components/Navigation';
 import BasketList from '../Components/BasketList';
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Container } from 'react-bootstrap';
 import { fetchproducts } from "../store/productsSlice";
+import { removeBasket } from "../store/basketSlice"
+import styled from 'styled-components';
 
 
 function Basket() {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
   const basket = useSelector((state) => state.basket.orders);
   const products = useSelector((state) => state.products.products);
   const basket_products_ref = basket.map(e => parseInt(e.product));
   const basket_list = products.filter(product => basket_products_ref.includes(product.id))
-  
-  const global_qty = basket.reduce(function(accumulateur, valeurCourante){
+
+  const global_qty = basket.reduce(function (accumulateur, valeurCourante) {
     return accumulateur + valeurCourante.quantity;
   }, 0);
-  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchproducts())
-    },[]);
+  useEffect(() => {
+    dispatch(fetchproducts())
+  }, []);
 
-    
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <Navigation />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h1>Hi {profile == null ? "User" : profile.firstName} !</h1>
-          <p>There are {global_qty} items in your basket</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <BasketList list={basket_list}/>
-        </Col>
-      </Row>
-    </Container>
-
+    <div>
+      <div>
+        <Navigation />
+      </div>
+      <div>
+        <h1>Hi {profile == null ? "User" : profile.firstName} !</h1>
+        <p>There are {global_qty} items in your basket</p>
+        <StyledButton onClick={() => dispatch(removeBasket())}>Clear basket</StyledButton>
+      </div>
+      <div>
+        <BasketList list={basket_list} />
+      </div>
+    </div>
   )
 }
 
 export default Basket
+
+
+const StyledButton = styled.button`
+  background-color: #FFCA2C;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  outline: none;
+  -webkit-user-select: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-style: none;
+`
