@@ -24,4 +24,8 @@ export default Items
 
 const ItemsContent = styled.div`
 text-align:center;
+display:flex;
+justify-content: space-between;
+flex-wrap: wrap;
+
 `

@@ -9,6 +9,8 @@ function Navigation() {
     const [isDark, setIsDark] = useState(false)
 
     const profile = useSelector((state) => state.user.profile)
+    console.log('dans navigation profil: ')
+    console.log(profile)
     const basket = useSelector((state) => state.basket.orders);
     const navigate = useNavigate();
     const global_qty = basket.reduce(function(accumulateur, valeurCourante){
@@ -17,9 +19,7 @@ function Navigation() {
     const handleMode = () => {
         setIsDark(true)
     }
-
-
-
+    let user = "user"
     return (
         <ThemeProvider theme={isDark ? themeDark : themeLight}>
             <NavContainer >
@@ -28,7 +28,7 @@ function Navigation() {
                     <span onClick={() => navigate("/")}>EZ Shopping</span>
                 </div>
                 <div className='nav-right'>
-                    <span onClick={() => navigate("/User")}>👱🏼‍♂️ {profile == null ? "User" : profile.firstName}</span>
+                    <span onClick={() => navigate("/User")}>👱🏼‍♂️ {!profile  ? "user" : profile.firstName}</span>
                     <span onClick={() => navigate("/Basket")}>🛒 {global_qty} Items</span>
                     <span onClick={()=> setIsDark((prevMode)=> !prevMode)}> {!isDark ? "⚫️ Dark" : "⚪️ Light"}  </span>
                 </div>

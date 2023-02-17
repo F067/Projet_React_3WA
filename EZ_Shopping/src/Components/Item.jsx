@@ -24,7 +24,9 @@ function Item(props) {
     return (
 
         <CardItem key={props.product.id}>
-            <img src={props.product.image} />
+            <div className='image'>
+                <img src={props.product.image}  />
+            </div>
             <div className='details'>
                 <h2>{props.product.title}</h2>
                 <span className='category'>{props.product.category}</span>
@@ -33,8 +35,7 @@ function Item(props) {
                 </p>
                 <div className='price-quantity'>
                     <h2>${props.product.price}</h2>
-                    <span>Quantity : </span>
-                    <input type="number" onChange={handleChange} min={1} value={number}></input>
+                    <span>Quantity : <input type="number" onChange={handleChange} min={1} value={number}></input></span>
                     <button id={props.product.id} onClick={addToBasket}>Add to basket</button>
                 </div>
 
@@ -49,24 +50,39 @@ export default Item
 
 
 const CardItem = styled.div`
-border-top: solid grey;
-padding-top: 2rem;
+
+padding: 2rem 1rem;
 margin-top: 2rem;
-height: 400px;
 width: 50%;
 display: flex;
-justify-content: space-between;
-align-items: center;
 overflow: hidden;
 
 
-img{
-    height: 100%;
+.image{
+    width:30%;
+    height:30rem;
+    overflow:hidden
+}
+
+.image>img{
+    width:100%;
 }
 
 .details{
+    display: flex;
+    flex-direction: column;
+    flex-basis: fit-content;
+    align-items: flex-start;
     padding: 2rem;
+    max-height: 100%;
+    flex-basis: 
+    overflow: scroll;
+   
 }
+.details>p{
+    text-align: left; 
+}
+
 span.category{
 
     background-color: #c0c0c0;
@@ -77,6 +93,10 @@ span.category{
 .price-quantity{
     display:flex;
     flex-direction: column;
+}
+
+input{
+    width: 3rem;
 }
 
 button{
@@ -91,6 +111,9 @@ button{
     border-style: none;
     width: 6rem;
     margin-top : 1rem;
+    &:hover{
+        background-color: #F2CD5C;
+    }
 }
 `
 

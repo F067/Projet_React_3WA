@@ -31,7 +31,6 @@ function Formular() {
             lastName: lastName,
             email: email
         }
-        localStorage.setItem("user", JSON.stringify(user))
         dispatch(updateProfile(user))
     }
 
