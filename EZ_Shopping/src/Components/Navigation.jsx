@@ -7,7 +7,7 @@ import { userTheme } from '../store/userSlice';
 
 
 function Navigation() {
-    const [isDark, setIsDark] = useState(false)
+    // const [isDark, setIsDark] = useState(false)
 
     const navigate = useNavigate();
 
@@ -17,30 +17,19 @@ function Navigation() {
     const basket = useSelector((state) => state.basket.orders);
 
 
-    useEffect(() => {
-        if (themeMode) {
-            let mode = {
-                theme: isDark
-            }
-            dispatch(userTheme(mode))
-        }
-    }, [isDark])
-
-
     const global_qty = basket.reduce(function (accumulateur, valeurCourante) {
         return accumulateur + valeurCourante.quantity;
     }, 0);
 
 
     const handleMode = () => {
-        setIsDark(isDark ? false : true)
-        dispatch(userTheme(isDark))
+        dispatch(userTheme(themeMode == "dark" ? "light" : "dark"))
     }
 
 
 
     return (
-        <ThemeProvider theme={!themeMode === false ? themeDark : themeLight}>
+        <ThemeProvider theme={themeMode === "dark" ? themeDark : themeLight}>
             <NavContainer >
                 <GlobalStyle />
                 <div className='nav-left'>
@@ -49,7 +38,7 @@ function Navigation() {
                 <div className='nav-right'>
                     <span onClick={() => navigate("/User")}>👱🏼‍♂️ {!profile ? "user" : profile.firstName}</span>
                     <span onClick={() => navigate("/Basket")}>🛒 {global_qty} Items</span>
-                    <span onClick={handleMode}> {isDark ? "⚫️ Dark" : "⚪️ Light"}  </span>
+                    <span onClick={handleMode}> {themeMode == "dark" ? "⚫️ Dark" : "⚪️ Light"}  </span>
                 </div>
             </NavContainer>
         </ThemeProvider>

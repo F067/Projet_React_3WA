@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    profile: [],
+    profile: {
+        themeMode: "light"
+    },
 }
 
 export const userSlice = createSlice({
