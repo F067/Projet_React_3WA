@@ -24,6 +24,17 @@ export const basketSlice = createSlice({
       }
       
     },
+    setQuantity(state, action){
+      let order = action.payload;
+      const products_ref = state.orders.map(e => e.product);
+      if(products_ref.includes(order.product)){
+        state.orders.map((e)=>{
+          if(e.product == order.product){
+            e.quantity = order.quantity;
+          }
+        })
+      }
+    },
     removeOrder(state, action){
       let order = action.payload;
       const products_ref = state.orders.map(e => e.product);
@@ -42,4 +53,4 @@ export const basketSlice = createSlice({
   },
 });
 
-export const { addOrder, removeOrder, removeBasket, addQuantity } = basketSlice.actions;
+export const { addOrder, removeOrder, removeBasket, setQuantity } = basketSlice.actions;

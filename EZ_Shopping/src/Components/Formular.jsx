@@ -15,11 +15,7 @@ function Formular() {
 
     // à chaque changement d'etat du redux (profile) on attribue la bonne value
     useEffect(() => {
-        if (profile != null) {
-            setFirstName(profile.firstName)
-            setLastName(profile.lastName)
-            setEmail(profile.email)
-        }
+        
     }, [profile])
 
 
@@ -31,7 +27,6 @@ function Formular() {
             lastName: lastName,
             email: email
         }
-        localStorage.setItem("user", JSON.stringify(user))
         dispatch(updateProfile(user))
     }
 
